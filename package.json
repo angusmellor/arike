@@ -34,5 +34,10 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.32.2"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@threlte/core": "^6.0.8",
+		"@types/three": "^0.156.0",
+		"three": "^0.157.0"
+	}
 }
