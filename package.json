@@ -37,8 +37,11 @@
 	"type": "module",
 	"dependencies": {
 		"@threlte/core": "^6.0.8",
+		"@threlte/extras": "^7.4.0",
 		"@types/three": "^0.156.0",
 		"glsl": "^0.0.1",
-		"three": "^0.157.0"
+		"simplex-noise": "^4.0.1",
+		"three": "^0.157.0",
+		"vite-plugin-glsl": "^1.1.2"
 	}
 }
