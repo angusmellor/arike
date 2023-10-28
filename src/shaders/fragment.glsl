@@ -5,6 +5,22 @@ const int octaves = 6;
 const float seed = 43758.5453123;
 const float seed2 = 73156.8473192;
 
+
+vec4 RGBtoCMYK(vec3 rgb) {
+    float x = rgb.x;
+    float y = rgb.y;
+    float z = rgb.z;
+    float k = min(1.0 - x, min(1.0 - y, 1.0 - z));
+    vec3 cmy = vec3(0.0);
+    float invK = 1.0 - k;
+    if (invK != 0.0) {
+        cmy.x = (1.0 - x - k);
+        cmy.y = (1.0 - y - k) ;
+        cmy.z = (1.0 - z - k);
+    }
+    return clamp(vec4(cmy, 1.), 0., 1.);
+}
+
 vec2 random2(vec2 st, float seed){
 st = vec2( dot(st,vec2(127.1,311.7)),
           dot(st,vec2(269.5,183.3)) );
@@ -68,8 +84,11 @@ uv *= 1. + dot(uv, uv)*.3;
 
 float time = u_time / 20.;
 
-mat2 rot = mat2(cos(time), sin(time),
-              -sin(time), cos(time));
+float rotSpeed = 0.3 * time;
+
+
+mat2 rot = mat2(cos(rotSpeed), sin(rotSpeed),
+              -sin(rotSpeed), cos(rotSpeed));
 uv = rot * uv;
 uv *= 1.4 + sin(time) * .3;
 uv.x -= time;
@@ -77,35 +96,44 @@ uv.x -= time;
 vec2 q = vec2(0.,0.);
 vec2 r = vec2(0.,0.);
 
+// vec3 colour = vec3(pattern(uv, seed, time, q, r));
+// float QR = clamp(dot(q, r), -1., 1.);
+// colour = vec3(
+//   (q.x + q.y) + QR * 60., 
+//   (q.y) * 10. + QR * 95., 
+//   r.x * r.y + QR * 50.
+// );
+// colour += .0;
+// colour = clamp(colour, 0.1, 0.99);
+// gl_FragColor = vec4(colour, 0.99);
+// gl_FragColor = vec4(RGBtoCMYK(colour));
+// gl_FragColor = clamp( gl_FragColor, 0., 1.);
+
+// vec3 colour = vec3(pattern(uv, seed, time, q, r));
+// float QR = clamp(dot(q, r), -1., 1.);
+// colour += vec3(
+// (q.x + q.y) + QR * 30.,
+// QR * 15.,
+// r.x * r.y + QR * 5.
+// );
+// colour += .5;
+// colour = clamp(colour, 0.05, 0.8);
+// gl_FragColor = vec4(colour, 0.99);
 vec3 colour = vec3(pattern(uv, seed, time, q, r));
-float QR = clamp(dot(q, r), -1., 1.);
-colour += vec3(
-(q.x + q.y) + QR * 30.,
-QR * 15.,
-r.x * r.y + QR * 5.
-);
-colour += .5;
-colour = clamp(colour, 0.05, 0.99);
-colour = vec3(0.7 - colour.x, 0.7 -     colour.y, 0.7 - colour.z);
-
-
-
-// colour = vec3(QR * 200.);
-// colour.r -= dot(q, r) * 15.;
-// colour.g += r.x;
-// colour = mix(colour, vec3(pattern(uv * r, seed2, time, q, r), dot(q, r) * 15., 0.), .5);
-// colour -= q.y * 1.5;
-// colour.g += dot(q, r) * 15.;
-
-// colour = hsv2rgb(colour);
-
-// gl_FragColor = vec4(abs(colour), 1.);
-
-// if (colour.x > 0.85 && colour.y > 0.85 && colour.z > 0.85) {
-//   gl_FragColor = vec4(0.5,0.5,0.5, 0.5);
-// } else {
-//   gl_FragColor = vec4(colour - (abs(colour) * .05), 0.15);
-// }
-//gl_FragColor = vec4(colour - (abs(colour) * .5), 0.15);
-gl_FragColor = vec4( 1., u_time/1000., 0.1, 0.9);
+// float QR = clamp(dot(q, r), -1., 1.);
+float QR = clamp(dot(q, r), 0., 1.);
+float RQ = clamp(dot(r, q), 0., 1.);
+colour = colour = clamp( 1. - colour, 0., 1.);
+colour -= clamp(vec3(
+ RQ * 10.,
+ 0.,
+ 0.
+) * cos(time *3.), 0., 1.);
+colour -= clamp(vec3(
+  0.,
+  RQ * 5.,
+  0.
+) * sin(time *3.), 0., 1.);
+colour = clamp(colour, 0., 1.);
+gl_FragColor = vec4(colour, 1.);
 }
