@@ -16,10 +16,10 @@
 	</main>
 
 	<footer>
-		<a href="https://www.instagram.com/padlockarike/">
+		<a href="https://open.spotify.com/artist/41RqiU6bgH8KubopKyBBK6">
 			<img class="logo" src={SpotifyLogo} alt="Spotify" />	
 		</a>
-		<a href="https://open.spotify.com/artist/41RqiU6bgH8KubopKyBBK6?si=eaIwF7fgS9-c4rRU0XFIjA">
+		<a href="https://www.instagram.com/padlockarike/">
 			<img class="logo" src={InstagramLogo} alt="Instagram"/>
 		</a>
 		<a href="https://www.tiktok.com/@padlockarike">
