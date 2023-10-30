@@ -1,6 +1,5 @@
 <script lang="ts">
   import { T, useFrame, useThrelte } from '@threlte/core';
-  import { OrbitControls } from '@threlte/extras';
   import { PlaneGeometry, Vector2 } from 'three';
   import fragmentShader from '../shaders/fragment.glsl?raw';
   import vertexShader from '../shaders/vertex.glsl?raw';
@@ -8,7 +7,7 @@
   const terrainSize = 30
   const geometry = new PlaneGeometry(terrainSize, terrainSize, 100, 100)
   
-  const { size, invalidate } = useThrelte()
+  const { size } = useThrelte()
   
   let uniforms={
     u_time: { value: 0},
@@ -18,10 +17,7 @@
 
   useFrame((_, delta) => {
     uniforms.u_time.value += delta
-    invalidate()
   })
-
-  // invalidate()
 
 </script>
 
@@ -31,10 +27,7 @@
   near={0.1}
   far={100}
   position={[1,1,100]}
-  enableDamping
->
-  <OrbitControls/>
-</T.PerspectiveCamera>
+/>
 
 <T.Mesh
   {geometry}

@@ -20,7 +20,6 @@ vec4 RGBtoCMYK(vec3 rgb) {
     }
     return clamp(vec4(cmy, 1.), 0., 1.);
 }
-
 vec2 random2(vec2 st, float seed){
 st = vec2( dot(st,vec2(127.1,311.7)),
           dot(st,vec2(269.5,183.3)) );
