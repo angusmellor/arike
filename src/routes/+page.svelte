@@ -13,7 +13,7 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="homepage" content="homepage" />
 	<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 </svelte:head>
 
@@ -29,6 +29,8 @@
 	h1 {
 		position: absolute;
 		margin-left: 50px;
+		font-family: "Sometype Mono";
+		font-weight: 700;
 	}
 </style>
 

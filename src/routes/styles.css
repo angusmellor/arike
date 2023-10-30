@@ -1,8 +1,4 @@
 @import '@fontsource/fira-mono';
-@font-face {
-	font-family: 'Conthrax';
-	src: url("fonts/conthrax-sb.otf")
-}
 
 :root {
 	--font-body: 'Conthrax', Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
