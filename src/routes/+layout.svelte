@@ -5,6 +5,11 @@
 	import './styles.css';
 </script>
 
+<svelte:head>
+	<link rel="stylesheet"
+  	href="https://fonts.googleapis.com/css?family=Sometype+Mono">
+</svelte:head>
+
 <div class="app">
 	<main>
 		<slot />
