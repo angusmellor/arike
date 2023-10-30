@@ -1,14 +1,14 @@
 <script>
 	import Canvas from './Cavnas.svelte';
-	window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  const element = document.getElementById('embed-iframe');
-	const callback = (EmbedController) => {};
-  const options = {
-      uri: 'spotify:track:0lqqBVjUNnSeUdx3TmSCma',
-			width: "60%"
-    };
-  IFrameAPI.createController(element, options, callback);
-};
+// 	window.onSpotifyIframeApiReady = (IFrameAPI) => {
+//   const element = document.getElementById('embed-iframe');
+// 	const callback = (EmbedController) => {};
+//   const options = {
+//       uri: 'spotify:track:0lqqBVjUNnSeUdx3TmSCma',
+// 			width: "60%"
+//     };
+//   IFrameAPI.createController(element, options, callback);
+// };
 </script>
 
 <svelte:head>
@@ -19,9 +19,9 @@
 
 <Canvas />
 
-<h1>Padlock Arike</h1>
+<h1>Padlock Ariké</h1>
 
-<div class="spotify" id="embed-iframe"></div>
+<!-- <div class="spotify" id="embed-iframe"></div> -->
 
 
 

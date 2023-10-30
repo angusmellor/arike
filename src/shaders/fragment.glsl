@@ -1,6 +1,6 @@
-uniform vec2 u_resolution;
-uniform float u_time;
-
+// uniform vec2 u_resolution;
+uniform float u_time; // const float u_time = 10000.;
+const vec2 u_resolution = vec2(1000, 1000);
 const int octaves = 6;
 const float seed = 43758.5453123;
 const float seed2 = 73156.8473192;
